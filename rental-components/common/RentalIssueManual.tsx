@@ -1,5 +1,4 @@
 import { pubKeyUrl, shortPubKey, tryPublicKey } from '@cardinal/common'
-import { css } from '@emotion/react'
 import type { TokenData } from 'apis/api'
 import { Alert } from 'common/Alert'
 import { Button } from 'common/Button'
@@ -54,7 +53,7 @@ export const RentalIssueManual = ({
         }}
         disableRelisting={true}
       />
-      <div>
+      {/* <div>
         <div className="mb-1 text-base text-light-0">
           Manual revocation pubkey
         </div>
@@ -78,7 +77,7 @@ export const RentalIssueManual = ({
             Me
           </Button>
         </div>
-      </div>
+      </div> */}
       {txResults ? (
         <RentalIssueResults txResults={txResults} tokenDatas={tokenDatas} />
       ) : error ? (

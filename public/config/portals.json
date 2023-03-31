@@ -24,15 +24,17 @@
     },
     "invalidationOptions": {
       "durationCategories": [
-        "Minutes",
-        "Hours",
         "Days",
         "Weeks",
         "Months",
         "Years"
       ],
-      "invalidationCategories": ["Return"],
-      "paymentMints": ["So11111111111111111111111111111111111111112"],
+      "invalidationCategories": [
+        "Return"
+      ],
+      "paymentMints": [
+        "So11111111111111111111111111111111111111112"
+      ],
       "setClaimRentalReceipt": true,
       "showClaimRentalReceipt": true
     }

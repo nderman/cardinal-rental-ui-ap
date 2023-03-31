@@ -19,7 +19,6 @@ import { NFTViewRental } from 'common/NFTViewRental'
 import { notify } from 'common/Notification'
 import { RefreshButton } from 'common/RefreshButton'
 import { SelecterDrawer } from 'common/SelectedDrawer'
-import { Selector } from 'common/Selector'
 import { TabSelector } from 'common/TabSelector'
 import { elligibleForRent, getMintfromTokenData } from 'common/tokenDataUtils'
 import type { ProjectConfig } from 'config/config'
@@ -175,7 +174,6 @@ export const Dashboard = () => {
     rented: rentedTokens,
     'rented-out': managedTokens,
   }[selectedGroup]
-
   const groupedTokens = groupByConfig(
     tokenQuery.data ?? [],
     selectedConfig
@@ -290,33 +288,6 @@ export const Dashboard = () => {
                 setSelectedGroup(o.value)
                 setPane('browse')
               }}
-            />
-            <Selector<string>
-              isClearable
-              className="w-max min-w-[200px] rounded-xl"
-              defaultOption={
-                selectedConfig
-                  ? {
-                      label: selectedConfig?.displayName,
-                      value: selectedConfig?.name,
-                    }
-                  : undefined
-              }
-              onChange={(e) =>
-                setSelectedConfig(
-                  e
-                    ? Object.values(projectConfigs).find(
-                        ({ name }) => name === e.value
-                      )
-                    : undefined
-                )
-              }
-              options={Object.values(projectConfigs)
-                .filter((c) => c.type === 'Collection')
-                .map(({ displayName, name }) => ({
-                  label: displayName,
-                  value: name,
-                }))}
             />
           </div>
           <div className="flex gap-4">
@@ -489,6 +460,7 @@ export const Dashboard = () => {
                                         disabled={!walletId}
                                         className="inline-block flex-none px-4 py-2 text-lg"
                                         onClick={async () => {
+                                          console.log('click')
                                           if (
                                             elligibleForRent(config, tokenData)
                                           ) {

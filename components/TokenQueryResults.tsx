@@ -25,6 +25,8 @@ import type { ManageTokenGroup, ManageTokenGroupId } from './Manage'
 import { manageTokenGroups } from './Manage'
 import { TokenQueryData } from './TokenQueryData'
 
+const minUnrented = 8
+
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   setSelectedGroup: (id: ManageTokenGroupId) => void
   tokenQuery: Pick<
@@ -183,6 +185,11 @@ export const TokenQueryResults: React.FC<Props> = ({
                         tokenData.tokenAccount?.parsed.mint.toString()
                     )
                   )
+                } else if (elligibleForRent(config, tokenData) && (filteredAndSortedTokens.length - selectedTokens.length) <= minUnrented) {
+                  notify({
+                    message: `Hold ${minUnrented}`,
+                    description: `You must hold ${minUnrented} unfrozen Alpha Pharaohs after rental action!`,
+                  })
                 } else if (elligibleForRent(config, tokenData)) {
                   setSelectedTokens([...selectedTokens, tokenData])
                 } else {

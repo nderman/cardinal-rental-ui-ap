@@ -37,17 +37,17 @@ export type ManageTokenGroup = {
 export const manageTokenGroups = (
   walletId: PublicKey | undefined
 ): ManageTokenGroup[] => [
-  {
-    id: 'all',
-    header: 'All',
-    description:
-      'View all tokens affiliated with your wallet on this marketplace',
-    icon: 'performance',
-    filter: {
-      type: 'claimer',
-      value: [walletId?.toString() || ''],
-    },
-  },
+  // {
+  //   id: 'all',
+  //   header: 'All',
+  //   description:
+  //     'View all tokens affiliated with your wallet on this marketplace',
+  //   icon: 'performance',
+  //   filter: {
+  //     type: 'claimer',
+  //     value: [walletId?.toString() || ''],
+  //   },
+  // },
   {
     id: 'available',
     header: 'Available',
@@ -148,7 +148,7 @@ export const Manage = () => {
     }
   )
 
-  const [selectedGroup, setSelectedGroup] = useState<ManageTokenGroupId>('all')
+  const [selectedGroup, setSelectedGroup] = useState<ManageTokenGroupId>('available')
   const [selectedTokens, setSelectedTokens] = useState<TokenData[]>([])
   const attributeFilterOptions = getAllAttributes(allManagedTokens.data ?? [])
   return (
@@ -159,12 +159,12 @@ export const Manage = () => {
       />
       <HeaderSlim
         tabs={[
-          { name: 'Browse', anchor: 'browse' },
+          { name: 'Browse', anchor: 'browse', tooltip: 'Find an Alpha Pharaoh to rent'  },
           {
             name: 'Manage',
             anchor: 'manage',
             disabled: !walletId,
-            tooltip: !walletId ? 'Connect wallet' : undefined,
+            tooltip: !walletId ? 'Connect wallet' : "Manage your Alpha Pharaoh rentals",
           },
         ]}
       />

@@ -14,6 +14,7 @@ import * as Sentry from '@sentry/browser'
 import type { PublicKey } from '@solana/web3.js'
 import { useQuery } from '@tanstack/react-query'
 import type { TokenData } from 'apis/api'
+import cachios from 'cachios'
 import type { ProjectConfig, TokenFilter } from 'config/config'
 import { withTrace } from 'monitoring/trace'
 import { useEnvironmentCtx } from 'providers/EnvironmentProvider'
@@ -95,14 +96,20 @@ export const useBrowseAvailableTokenDatas = (subFilter?: TokenFilter) => {
         const trace = Sentry.startTransaction({
           name: `[useBrowseAvailableTokenDatas] ${config.name}`,
         })
-
+        const disallowedMints =( await cachios.get('/alpha-pharaohs/exclusions/all', {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+          ttl: 300 /* seconds */,
+        })).data
         ////
         const indexedTokenManagers = await getTokenIndexData(
           environment,
           subFilter ?? config.filter ?? null,
           config.showUnknownInvalidators ?? false,
           state,
-          config.disallowedMints ?? [],
+          disallowedMints ?? [],
           trace
         )
 

@@ -5,17 +5,15 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
 import { Selector } from './Selector'
 
-export type DurationOption = 'hours' | 'days' | 'weeks' | 'months'
+export type DurationOption =  'days' | 'weeks' | 'months'
 
 export const DURATION_DATA: { [key in DurationOption]: number } = {
-  hours: 3600,
   days: 86400,
   weeks: 604800,
   months: 2419200,
 }
 
 export const SECONDS_TO_DURATION: { [key in number]: DurationOption } = {
-  3600: 'hours',
   86400: 'days',
   604800: 'weeks',
   2419200: 'months',

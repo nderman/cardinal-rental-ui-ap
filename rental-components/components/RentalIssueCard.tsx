@@ -27,7 +27,7 @@ export type InvalidatorOption =
   // | 'usages'
   'expiration' | 'duration' | 'manual' | 'rate'
 
-export type DurationOption = 'hours' | 'days' | 'weeks' | 'months'
+export type DurationOption =  'days' | 'weeks' | 'months'
 
 export type RentalCardConfig = {
   invalidators: InvalidatorOption[]

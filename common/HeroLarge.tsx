@@ -16,7 +16,8 @@ export const HeroLarge: React.FC = () => {
           src={config.hero}
           alt={config.name}
         />
-        <div className="absolute left-8 flex h-24 w-24 -translate-y-[65%] items-center justify-center overflow-hidden rounded-full border-4 border-border bg-dark-5 lg:h-32 lg:w-32">
+        <div className="absolute flex h-24 w-24 -translate-y-[65%] items-center justify-center overflow-hidden rounded-full border-4 border-border bg-dark-5 lg:h-32 lg:w-32"
+        style={{left: '4rem'}}>
           <img
             className={`w-full ${config.logoPadding && 'p-3'}`}
             src={config.logoImage}

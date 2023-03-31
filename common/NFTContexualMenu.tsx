@@ -17,7 +17,7 @@ import { getLink, useProjectConfig } from 'providers/ProjectConfigProvider'
 import { AiOutlineDatabase } from 'react-icons/ai'
 import { BsArrowReturnLeft } from 'react-icons/bs'
 import { FaEllipsisH, FaLink } from 'react-icons/fa'
-import { FiExternalLink, FiSend } from 'react-icons/fi'
+import { FiExternalLink } from 'react-icons/fi'
 import { IoAddSharp, IoClose } from 'react-icons/io5'
 import { useRentalIssueCard } from 'rental-components/components/RentalIssueCard'
 import { useRentalRateCard } from 'rental-components/components/RentalRateCard'
@@ -25,7 +25,7 @@ import { useRentalViewCard } from 'rental-components/components/RentalViewCard'
 
 import { notify } from './Notification'
 import { Popover } from './Popover'
-import { elligibleForRent, isPrivateListing } from './tokenDataUtils'
+import { isPrivateListing } from './tokenDataUtils'
 
 export const popoverItemClass = `flex items-center text-light-0 px-2 py-1 rounded-md hover:bg-[rgba(255,255,255,0.1)] gap-2`
 
@@ -123,7 +123,7 @@ export const NFTContexualMenu = ({ tokenData }: { tokenData: TokenData }) => {
                 Claim Link
               </a>
             )}
-          {!tokenManager && (
+          {/* {!tokenManager && (
             <div
               className={`${popoverItemClass} ${
                 elligibleForRent(config, tokenData)
@@ -150,7 +150,7 @@ export const NFTContexualMenu = ({ tokenData }: { tokenData: TokenData }) => {
               <FiSend />
               Rent
             </div>
-          )}
+          )} */}
           {tokenManager &&
             tokenManager.parsed.issuer.toString() === walletId?.toString() && (
               <div

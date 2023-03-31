@@ -6,7 +6,7 @@ const nextConfig = {
     MAINNET_PRIMARY: process.env.MAINNET_PRIMARY,
     MAINNET_PRIMARY_BETA: process.env.MAINNET_PRIMARY_BETA,
     MAINNET_SECONDARY: process.env.MAINNET_SECONDARY,
-    BASE_CLUSTER: process.env.BASE_CLUSTER || 'devnet',
+    BASE_CLUSTER: process.env.BASE_CLUSTER || 'mainnet',
     NEXT_PUBLIC_BASE_URL:
       process.env.NEXT_PUBLIC_BASE_URL || 'https://rent.cardinal.so',
   },
@@ -21,6 +21,10 @@ const nextConfig = {
           },
         ],
         destination: '/:hostName/:path*',
+      },
+      {
+        source: '/:hostName/:collection/exclusions/all',
+        destination: 'https://sacredroyalties.curedlabs.com/api/pharaohs',
       },
       {
         source: '/:hostName/:collection/claim/:tokenManagerString*',

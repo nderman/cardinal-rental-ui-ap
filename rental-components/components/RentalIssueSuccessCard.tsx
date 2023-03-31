@@ -134,9 +134,7 @@ export const RentalIssueSuccessCard = ({
       <div
         onClick={() => {
           handleCopy(
-            txResults.length === 1
-              ? txResults[0]!.claimLink
-              : `https://rent.cardinal.so/${config.name}`
+            `https://rent.tombraid.app/${config.name}`
           )
         }}
         className="mx-auto mt-4 block text-center hover:cursor-pointer hover:text-gray-400"

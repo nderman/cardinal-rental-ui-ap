@@ -9,7 +9,6 @@ import { useRouter } from 'next/router'
 import { useEnvironmentCtx } from 'providers/EnvironmentProvider'
 import { useModal } from 'providers/ModalProvider'
 import { useEffect, useState } from 'react'
-import { LogoTitled } from 'rental-components/common/LogoTitled'
 
 import { ButtonSmall } from './ButtonSmall'
 import { Tooltip } from './Tooltip'
@@ -81,17 +80,14 @@ export const HeaderSlim: React.FC<Props> = ({ tabs, hideDashboard }: Props) => {
     <div className="w-full px-4 py-4">
       <div className="flex min-h-[72px] flex-wrap items-center justify-center gap-4 rounded-xl bg-white bg-opacity-5 py-4 px-8 md:justify-between">
         <div className="flex items-center gap-5">
-          <div
-            className="flex cursor-pointer items-center transition-opacity hover:opacity-60"
-            onClick={() => {
-              amplitude.logEvent('header: click tab', {
-                name: 'home',
-              })
-              router.push(`/${location.search}`)
-            }}
-          >
-            <LogoTitled className="inline-block h-6" />
-          </div>
+        <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://tombraid.app/"
+              className="text-blue-400"
+            >
+              <div className='text-2xl'>Tomb<b style={{color: '#4299e1'}}>Raid</b></div>
+            </a>
           {environment.label !== 'mainnet-beta' && (
             <div className="text-primary">{environment.label}</div>
           )}
@@ -136,21 +132,6 @@ export const HeaderSlim: React.FC<Props> = ({ tabs, hideDashboard }: Props) => {
           )}
         </div>
         <div className="flex-5 flex items-center justify-end gap-6">
-          {!hideDashboard && wallet.connected && (
-            <Tooltip title="View and manage your rentals globally">
-              <div
-                className={`cursor-pointer text-center text-light-0 opacity-80 transition-opacity hover:opacity-100`}
-                onClick={() => {
-                  amplitude.logEvent('header: click tab', {
-                    name: 'dashboard',
-                  })
-                  router.push(`/me${location.search}`)
-                }}
-              >
-                Dashboard
-              </div>
-            </Tooltip>
-          )}
           {wallet.connected && wallet.publicKey ? (
             <AccountConnect
               dark={true}

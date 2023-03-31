@@ -41,3 +41,7 @@ body {
 .ant-picker-ranges .ant-picker-ok button:hover {
   color: white;
 }
+
+.flex.h-10.w-full:first-of-type {
+  display:none
+}

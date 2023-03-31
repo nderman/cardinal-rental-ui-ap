@@ -58,7 +58,7 @@ const App = ({
 }: AppProps & { config: ProjectConfig; cluster: string }) => {
   amplitude.init(
     process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY ??
-      '5416da0efc30dc892889733916be497b'
+      'a60ca0ef1438c08c194826703295370d'
   )
 
   const network = useMemo(() => {

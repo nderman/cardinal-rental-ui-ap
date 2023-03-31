@@ -26,10 +26,13 @@ const RPC_BETA_THRESHOLD = 0.25
 export const ENVIRONMENTS: Environment[] = [
   {
     label: 'mainnet-beta',
-    primary: process.env.MAINNET_PRIMARY || 'https://rpc.ankr.com/solana',
+    primary: 'https://intensive-hidden-resonance.solana-mainnet.quiknode.pro/78aa2fe623e4c946cfd2a46764e0c81fbe5f1052/',
     primaryBeta:
-      process.env.MAINNET_PRIMARY_BETA || 'https://rpc.ankr.com/solana',
-    secondary: process.env.MAINNET_SECONDARY || 'https://rpc.ankr.com/solana',
+      process.env.MAINNET_PRIMARY_BETA || 'https://intensive-hidden-resonance.solana-mainnet.quiknode.pro/78aa2fe623e4c946cfd2a46764e0c81fbe5f1052/',
+    secondary: process.env.MAINNET_SECONDARY || 'https://intensive-hidden-resonance.solana-mainnet.quiknode.pro/78aa2fe623e4c946cfd2a46764e0c81fbe5f1052/',
+    index: INDEX_ENABLED
+      ? 'https://prod-holaplex.hasura.app/v1/graphql'
+      : undefined,
   },
   {
     label: 'testnet',

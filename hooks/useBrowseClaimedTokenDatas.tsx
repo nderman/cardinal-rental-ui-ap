@@ -15,6 +15,7 @@ import type { Account } from '@solana/spl-token'
 import type { PublicKey } from '@solana/web3.js'
 import { useQuery } from '@tanstack/react-query'
 import type { TokenData } from 'apis/api'
+import cachios from 'cachios'
 import type { TokenFilter } from 'config/config'
 import { withTrace } from 'monitoring/trace'
 import { useEnvironmentCtx } from 'providers/EnvironmentProvider'
@@ -63,13 +64,21 @@ export const useBrowseClaimedTokenDatas = (
           name: `[useBrowseClaimedTokenDatas] ${config.name}`,
         })
 
+        const disallowedMints =( await cachios.get('/alpha-pharaohs/exclusions/all', {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
+          ttl: 300 /* seconds */,
+        })).data
+
         ////
         const indexedTokenManagers = await getTokenIndexData(
           environment,
           subFilter ?? config.filter ?? null,
           config.showUnknownInvalidators ?? false,
           state,
-          config.disallowedMints ?? [],
+          disallowedMints ?? [],
           trace
         )
 

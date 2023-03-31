@@ -35,7 +35,7 @@ export const shareTwitterClaimedLink = (
           : `a ${config.twitterHandle ? `${config.twitterHandle} ` : ''}NFT`
       }${
         issuerName ? ` from ${issuerName}` : ''
-      } using @cardinal_labs rental UI! Check it out at https://rent.cardinal.so/${
+      } using @cardinal_labs rental UI! Check it out at https://rent.tombraid.app/${
         config.name
       }/${tokenData.tokenManager?.pubkey.toString()}`
     ),
@@ -58,7 +58,7 @@ export const shareTwitterListedLink = (
                 config.twitterHandle ? `${config.twitterHandle} ` : ''
               }${tokenName}`
             : `a ${config.twitterHandle ? `${config.twitterHandle} ` : ''}NFT`
-        } for rent using @cardinal_labs rental UI! Check it out at ${claimLink}`
+        } for rent using @cardinal_labs rental UI! Check it out at https://rent.tombraid.app/${config.name}`
       ),
     ].join('')
   }
@@ -67,7 +67,7 @@ export const shareTwitterListedLink = (
     encodeURIComponent(
       `I just listed ${txResults.length} ${
         config.twitterHandle ? `${config.twitterHandle} ` : ''
-      }NFTs! Check it out at https://rent.cardinal.so/${config.name}`
+      }NFTs! Check it out at https://rent.tombraid.app/${config.name}`
     ),
   ].join('')
 }

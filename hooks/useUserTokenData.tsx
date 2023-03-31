@@ -263,7 +263,7 @@ export const useUserTokenData = (
               ] as AccountData<TimeInvalidatorData>)
             : undefined,
         }
-      })
+      })?.filter((tokenData) => tokenData.metaplexData?.parsed.updateAuthority === '4tZaYkFCtsbRLJDD9LVHi22ZMhTWCCxQHeQQbtuhSr34') 
     },
     {
       enabled: !!walletId,

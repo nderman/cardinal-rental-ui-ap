@@ -1,13 +1,13 @@
 import type { Wallet } from '@project-serum/anchor/dist/cjs/provider'
 import * as Sentry from '@sentry/browser'
 import type {
+  BlockheightBasedTransactionConfirmationStrategy,
   ConfirmOptions,
   Connection,
   SendTransactionError,
   Signer,
   Transaction,
 } from '@solana/web3.js'
-import { sendAndConfirmRawTransaction } from '@solana/web3.js'
 import { handleError } from 'apis/errors'
 import { notify } from 'common/Notification'
 
@@ -35,14 +35,20 @@ export const executeTransaction = async (
     ).blockhash
     transaction = await wallet.signTransaction(transaction)
     if (config.signers && config.signers.length > 0) {
+      console.log('partial sign')
       await transaction.partialSign(...config.signers)
     }
-    txid = await sendAndConfirmRawTransaction(
-      connection,
+    txid = await connection.sendRawTransaction(
       transaction.serialize(),
       config.confirmOptions
     )
-    console.log('Successful tx', txid)
+    const confirmStrategy: BlockheightBasedTransactionConfirmationStrategy = {
+      blockhash: latestBlockhash.blockhash as string,
+      lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+      signature: txid
+    }
+    const result = await connection.confirmTransaction(confirmStrategy)
+    console.log('Successful tx', result)
     config.notificationConfig &&
       notify({
         message: 'Succesful transaction',
